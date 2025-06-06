@@ -1,7 +1,8 @@
-import Spinner from "./components/spinner/Spinner";
+import { RouterProvider } from "react-router";
+import router from "./routes/Routes";
 
 function App() {
-  return <Spinner />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
