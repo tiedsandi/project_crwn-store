@@ -1,11 +1,11 @@
-import Header from "../components/header/Header.component";
 import Home from "./Home";
+import Navigation from "../components/navigation/navigation.component";
 import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Header />,
+    element: <Navigation />,
     errorElement: <h1>Error</h1>,
     children: [
       { index: true, element: <Home /> },
