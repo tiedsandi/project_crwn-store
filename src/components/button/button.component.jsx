@@ -1,7 +1,7 @@
 import classes from "./button.module.css";
 import spinnerClasses from "../spinner/spinner.module.css";
 
-const BUTTON_TYPE_CLASSES = {
+export const BUTTON_TYPE_CLASSES = {
   base: "baseButton",
   google: "googleSignIn",
   inverted: "inverted",

@@ -7,8 +7,8 @@ import { Fragment } from "react";
 import classes from "./navigation.module.css";
 
 const Navigation = () => {
-  const currentUser = true;
-  const isCartOpen = true;
+  const currentUser = false;
+  const isCartOpen = false;
 
   const signOutUser = () => console.log("test");
 
