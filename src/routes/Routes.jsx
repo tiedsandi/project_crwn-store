@@ -1,3 +1,4 @@
+import Authentication from "./Auth";
 import CategoriesPreview from "../components/Shop/category-preview/category-preview.component";
 import Category from "../components/Shop/category/category.component";
 import Home from "./Home";
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
           { path: ":category", element: <Category /> },
         ],
       },
-      { path: "auth", element: <h1>auth</h1> },
+      { path: "auth", element: <Authentication /> },
       { path: "checkout", element: <h1>checkout</h1> },
     ],
   },

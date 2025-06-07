@@ -1,5 +1,4 @@
-import Button, { BUTTON_TYPE_CLASSES } from "../../button/button.component";
-
+import Button from "../../UI/button/button.component";
 import classes from "./product-card.module.css";
 
 const ProductCard = ({ product }) => {
@@ -13,10 +12,7 @@ const ProductCard = ({ product }) => {
         <span className={classes.name}>{name}</span>
         <span className={classes.price}>${price}</span>
       </div>
-      <Button
-        buttonType={BUTTON_TYPE_CLASSES.inverted}
-        onClick={addProductToCart}
-      >
+      <Button buttonType="inverted" onClick={addProductToCart}>
         Add to cart
       </Button>
     </div>

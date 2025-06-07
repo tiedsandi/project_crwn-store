@@ -1,4 +1,4 @@
-import Button from "../../../button/button.component";
+import Button from "../../../UI/button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 import classes from "./cart-dropdown.module.css";
 import { useCallback } from "react";
