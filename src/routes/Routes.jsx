@@ -1,6 +1,7 @@
 import AuthPage from "./Auth";
 import CategoriesPreview from "../components/Shop/category-preview/category-preview.component";
 import Category from "../components/Shop/category/category.component";
+import CheckoutPage from "./Checkout";
 import HomePage from "./Home";
 import Navigation from "../components/navigation/navigation.component";
 import ShopPage from "./Shop";
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
         ],
       },
       { path: "auth", element: <AuthPage /> },
-      { path: "checkout", element: <h1>checkout</h1> },
+      { path: "checkout", element: <CheckoutPage /> },
     ],
   },
 ]);
