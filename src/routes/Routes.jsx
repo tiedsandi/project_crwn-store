@@ -1,9 +1,9 @@
-import Authentication from "./Auth";
+import AuthPage from "./Auth";
 import CategoriesPreview from "../components/Shop/category-preview/category-preview.component";
 import Category from "../components/Shop/category/category.component";
-import Home from "./Home";
+import HomePage from "./Home";
 import Navigation from "../components/navigation/navigation.component";
-import Shop from "./Shop";
+import ShopPage from "./Shop";
 import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([
@@ -12,16 +12,16 @@ const router = createBrowserRouter([
     element: <Navigation />,
     errorElement: <h1>Error</h1>,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <HomePage /> },
       {
         path: "shop",
-        element: <Shop />,
+        element: <ShopPage />,
         children: [
           { index: true, element: <CategoriesPreview /> },
           { path: ":category", element: <Category /> },
         ],
       },
-      { path: "auth", element: <Authentication /> },
+      { path: "auth", element: <AuthPage /> },
       { path: "checkout", element: <h1>checkout</h1> },
     ],
   },

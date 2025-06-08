@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 
-const Shop = () => {
+export default function ShopPage() {
   //  ngambil data seluruh produk kategori
 
   return (
@@ -8,6 +8,4 @@ const Shop = () => {
       <Outlet />
     </div>
   );
-};
-
-export default Shop;
+}
