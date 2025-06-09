@@ -1,6 +1,6 @@
 import SignInForm from "./sign-in/Signin-form.component";
 import SignUpForm from "./sign-up/signup-form.component";
-import classes from "./auth-container.module.css";
+import classes from "./layout-auth.module.css";
 
 export default function AuthContainer() {
   return (

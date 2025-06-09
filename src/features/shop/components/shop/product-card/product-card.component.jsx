@@ -1,4 +1,4 @@
-import Button from "../../UI/button/button.component";
+import Button from "../../../../../components/UI/button/button.component";
 import classes from "./product-card.module.css";
 
 const ProductCard = ({ product }) => {

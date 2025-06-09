@@ -1,4 +1,4 @@
-import { CATEGORIES, PRODUCTS } from "../../../data";
+import { CATEGORIES, PRODUCTS } from "../../../../../data";
 
 import { Link } from "react-router";
 import ProductCard from "../product-card/product-card.component";

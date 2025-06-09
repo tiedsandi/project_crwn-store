@@ -1,5 +1,5 @@
-import Button from "../../UI/button/button.component";
-import Input from "../../UI/input/Input.component";
+import Button from "@/components/UI/button/button.component";
+import Input from "@/components/UI/input/Input.component";
 import styles from "./Signin-form.module.css";
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import Directory from "../components/Home/directory/Directory.component";
+import Directory from "../components/home/directory/Directory.component";
 import { Outlet } from "react-router";
 
 export default function HomePage() {

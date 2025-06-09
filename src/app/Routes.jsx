@@ -1,10 +1,10 @@
-import AuthPage from "./Auth";
-import CategoriesPreview from "../components/Shop/category-preview/category-preview.component";
-import Category from "../components/Shop/category/category.component";
-import CheckoutPage from "./Checkout";
-import HomePage from "./Home";
+import AuthPage from "../features/auth/pages/Auth";
+import CategoriesPreview from "../features/shop/components/shop/category-preview/category-preview.component";
+import Category from "../features/shop/components/shop/category/category.component";
+import CheckoutPage from "../features/checkout/pages/Checkout";
+import HomePage from "../features/home/pages/Home";
 import Navigation from "../components/navigation/navigation.component";
-import ShopPage from "./Shop";
+import ShopPage from "../features/shop/pages/Shop";
 import { createBrowserRouter } from "react-router";
 
 const router = createBrowserRouter([

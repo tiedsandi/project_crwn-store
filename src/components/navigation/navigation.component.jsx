@@ -1,14 +1,14 @@
 import { Link, Outlet } from "react-router";
 
-import CartDropdown from "./cart/cart-dropdown/cart-dropdown.component";
-import CartIcon from "./cart/cart-icon/cart-icon.component";
+import CartDropdown from "@/features/cart/components/cart-dropdown/cart-dropdown.component";
+import CartIcon from "@/features/cart/components/cart-icon/cart-icon.component";
 import CrwnLogo from "../../assets/crown.svg";
 import { Fragment } from "react";
 import classes from "./navigation.module.css";
 
 const Navigation = () => {
   const currentUser = false;
-  const isCartOpen = false;
+  const isCartOpen = true;
 
   const signOutUser = () => console.log("test");
 
