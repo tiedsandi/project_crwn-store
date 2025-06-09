@@ -1,14 +1,17 @@
-import ShoppingIcon from "../../../../assets/shopping-bag.svg";
+import { useDispatch, useSelector } from "react-redux";
+
+import ShoppingIcon from "@/assets/shopping-bag.svg";
 import classes from "./cart-icon.module.css";
-import { useState } from "react";
+import { selectCartCount } from "../../cart.selectors";
+import { toggleCart } from "../../cartSlice";
 
 const CartIcon = () => {
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const cartCount = 2;
+  const disaptch = useDispatch();
+
+  const cartCount = useSelector(selectCartCount);
 
   const toggleIsCartOpen = () => {
-    setIsCartOpen(!isCartOpen);
-    console.log(isCartOpen);
+    disaptch(toggleCart());
   };
 
   return (

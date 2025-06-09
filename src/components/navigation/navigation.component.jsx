@@ -5,10 +5,12 @@ import CartIcon from "@/features/cart/components/cart-icon/cart-icon.component";
 import CrwnLogo from "../../assets/crown.svg";
 import { Fragment } from "react";
 import classes from "./navigation.module.css";
+import { selectIsCartOpen } from "@/features/cart/cart.selectors";
+import { useSelector } from "react-redux";
 
 const Navigation = () => {
   const currentUser = false;
-  const isCartOpen = true;
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   const signOutUser = () => console.log("test");
 

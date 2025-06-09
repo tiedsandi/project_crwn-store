@@ -1,14 +1,19 @@
+import {
+  addItemToCart,
+  clearItemFromCart,
+  removeItemFromCart,
+} from "@/features/cart/cartSlice";
+
 import styles from "./checkout-item.module.css";
+import { useDispatch } from "react-redux";
 
 export default function CheckoutItem({ cartItem }) {
   const { name, imageUrl, price, quantity } = cartItem;
-  // const cartItems = [];
+  const dispatch = useDispatch();
 
-  const clearItemHandler = () => console.log("clear");
-
-  const addItemHandler = () => console.log("add");
-
-  const removeItemHandler = () => console.log("remove");
+  const clearItemHandler = () => dispatch(clearItemFromCart(cartItem));
+  const addItemHandler = () => dispatch(addItemToCart(cartItem));
+  const removeItemHandler = () => dispatch(removeItemFromCart(cartItem));
 
   return (
     <div className={styles.checkoutItemContainer}>
