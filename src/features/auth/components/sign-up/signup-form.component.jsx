@@ -1,5 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "@/components/UI/button/button.component";
 import Input from "@/components/UI/input/Input.component";
+import { signUp } from "@/features/auth/authSlice";
 import styles from "./signup-form.module.css";
 import { useState } from "react";
 
@@ -15,6 +18,9 @@ export default function SignUpForm() {
   const [formErrors, setFormErrors] = useState({});
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const dispatch = useDispatch();
+  const { error: globalError, loading } = useSelector((state) => state.auth);
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
     setFormErrors({});
@@ -25,8 +31,16 @@ export default function SignUpForm() {
 
     const errors = {};
 
+    if (password.length < 7) {
+      errors.password = "Password must be at least 7 characters";
+    }
+
     if (password !== confirmPassword) {
       errors.confirmPassword = "Passwords do not match";
+    }
+
+    if (!displayName.trim()) {
+      errors.displayName = "Display name is required";
     }
 
     if (Object.keys(errors).length > 0) {
@@ -34,22 +48,22 @@ export default function SignUpForm() {
       return;
     }
 
-    try {
-      resetFormFields();
-    } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        setFormErrors({ email: "Email is already in use" });
-      } else {
-        console.log("User creation encountered an error", error);
-      }
-    }
+    dispatch(signUp({ email, password, displayName }))
+      .unwrap()
+      .then(() => resetFormFields())
+      .catch((errorCode) => {
+        if (errorCode === "auth/email-already-in-use") {
+          setFormErrors({ email: "Email is already in use" });
+        } else {
+          console.error("Sign-up error:", errorCode);
+        }
+      });
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
 
-    // Clear error when user starts typing again
     if (formErrors[name]) {
       setFormErrors((prev) => ({ ...prev, [name]: null }));
     }
@@ -100,7 +114,14 @@ export default function SignUpForm() {
           id="signup-confirm-password"
           error={formErrors.confirmPassword}
         />
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Signing Up..." : "Sign Up"}
+        </Button>
+        {globalError && !formErrors.email && (
+          <div className={styles.formError}>
+            Error: {globalError.replace("auth/", "").replaceAll("-", " ")}
+          </div>
+        )}
       </form>
     </div>
   );

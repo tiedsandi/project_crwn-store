@@ -1,18 +1,21 @@
 import { Link, Outlet } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 import CartDropdown from "@/features/cart/components/cart-dropdown/cart-dropdown.component";
 import CartIcon from "@/features/cart/components/cart-icon/cart-icon.component";
 import CrwnLogo from "../../assets/crown.svg";
 import { Fragment } from "react";
 import classes from "./navigation.module.css";
+import { selectCurrentUser } from "@/features/auth/auth.selector";
 import { selectIsCartOpen } from "@/features/cart/cart.selectors";
-import { useSelector } from "react-redux";
+import { signOutUserThunk } from "@/features/auth/authSlice";
 
 const Navigation = () => {
-  const currentUser = false;
+  const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
+  const dispatch = useDispatch();
 
-  const signOutUser = () => console.log("test");
+  const signOutUser = () => dispatch(signOutUserThunk());
 
   return (
     <Fragment>

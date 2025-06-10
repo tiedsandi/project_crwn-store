@@ -1,5 +1,8 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "@/components/UI/button/button.component";
 import Input from "@/components/UI/input/Input.component";
+import { signIn } from "@/features/auth/authSlice";
 import styles from "./Signin-form.module.css";
 import { useState } from "react";
 
@@ -11,18 +14,16 @@ const defaultFormFields = {
 export default function SignInForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const dispatch = useDispatch();
+  const { error, loading } = useSelector((state) => state.auth);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
-  const signInWithGoogle = () => {
-    // dispatch(googleSignInStart());
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // dispatch(emailSignInStart(email, password));
+    dispatch(signIn({ email, password }));
     resetFormFields();
   };
 
@@ -36,6 +37,9 @@ export default function SignInForm() {
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
+        {error && (
+          <div className={styles.formError}>Sign-in failed: {error}</div>
+        )}
         <Input
           label="Email"
           type="email"
@@ -45,7 +49,6 @@ export default function SignInForm() {
           onChange={handleChange}
           id="sign-in-email"
         />
-
         <Input
           label="Password"
           type="password"
@@ -55,10 +58,11 @@ export default function SignInForm() {
           onChange={handleChange}
           id="sign-in-password"
         />
-
         <div className={styles.buttonsContainer}>
-          <Button type="submit">Sign In</Button>
-          <Button buttonType="google" type="button" onClick={signInWithGoogle}>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Signing in..." : "Sign In"}
+          </Button>
+          <Button buttonType="google" type="button" onClick={() => {}}>
             Sign In With Google
           </Button>
         </div>

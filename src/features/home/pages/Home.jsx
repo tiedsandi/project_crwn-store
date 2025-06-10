@@ -1,7 +1,7 @@
 import { decrement, generalInput, increment } from "@/app/testingSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-import Directory from "../components/home/directory/Directory.component";
+import Directory from "../components/directory/Directory.component";
 import { Outlet } from "react-router";
 
 export default function HomePage() {
