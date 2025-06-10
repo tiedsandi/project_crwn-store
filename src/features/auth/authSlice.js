@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { signInUser, signUpUser } from "./auth.utils";
+import { signInUser, signInWithGoogle, signUpUser } from "./auth.utils";
 
 import { auth } from "@/utils/firebase";
 
@@ -46,6 +46,18 @@ export const checkUserSession = createAsyncThunk(
         }
       });
     });
+  }
+);
+
+export const googleSignIn = createAsyncThunk(
+  "auth/googleSignIn",
+  async (_, { rejectWithValue }) => {
+    try {
+      const user = await signInWithGoogle();
+      return user;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
 );
 
@@ -109,6 +121,20 @@ const authSlice = createSlice({
       .addCase(checkUserSession.rejected, (state) => {
         state.isLoading = false;
         state.currentUser = null;
+      })
+
+      // Google Sign In
+      .addCase(googleSignIn.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(googleSignIn.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.currentUser = action.payload;
+      })
+      .addCase(googleSignIn.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });

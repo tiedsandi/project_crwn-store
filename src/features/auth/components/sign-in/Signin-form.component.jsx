@@ -1,8 +1,8 @@
+import { googleSignIn, signIn } from "@/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "@/components/UI/button/button.component";
 import Input from "@/components/UI/input/Input.component";
-import { signIn } from "@/features/auth/authSlice";
 import styles from "./Signin-form.module.css";
 import { useState } from "react";
 
@@ -19,6 +19,10 @@ export default function SignInForm() {
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
+  };
+
+  const handleGoogleLogin = async () => {
+    dispatch(googleSignIn());
   };
 
   const handleSubmit = async (event) => {
@@ -62,7 +66,8 @@ export default function SignInForm() {
           <Button type="submit" disabled={loading}>
             {loading ? "Signing in..." : "Sign In"}
           </Button>
-          <Button buttonType="google" type="button" onClick={() => {}}>
+
+          <Button buttonType="google" type="button" onClick={handleGoogleLogin}>
             Sign In With Google
           </Button>
         </div>
