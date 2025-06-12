@@ -4,6 +4,7 @@ import {
 } from "@/features/cart/cart.selectors";
 
 import CheckoutItem from "./checkout-item/checkout-item.component";
+import PaymentForm from "./payment-form/payment-form.component";
 import styles from "./checkout.module.css";
 import { useSelector } from "react-redux";
 
