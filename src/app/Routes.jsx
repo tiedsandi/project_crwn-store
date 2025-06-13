@@ -11,7 +11,10 @@ import ProductUpdatePage from "@/features/admin/pages/product/ProductUpdate";
 import ProductsPage from "@/features/admin/pages/product/AdminProducts";
 import RequireAdminAuth from "@/middlewares/RequireAdminAuth";
 import ShopPage from "../features/shop/Shop";
+import Spinner from "@/components/UI/spinner/Spinner.component";
 import TransactionsPage from "@/features/admin/pages/AdminTranscation";
+import { categoriesPreviewLoader } from "@/features/shop/categoriesPreviewLoader";
+import { categoryLoader } from "@/features/shop/CategoryLoader";
 import { createBrowserRouter } from "react-router";
 import { productCreateAction } from "@/features/admin/pages/actions/ProductCreate.action";
 import { productUpdateAction } from "@/features/admin/pages/actions/ProductUpdate.action";
@@ -28,8 +31,18 @@ const router = createBrowserRouter([
         path: "shop",
         element: <ShopPage />,
         children: [
-          { index: true, element: <CategoriesPreview /> },
-          { path: ":category", element: <Category /> },
+          {
+            index: true,
+            element: <CategoriesPreview />,
+            loader: categoriesPreviewLoader,
+            HydrateFallback: Spinner,
+          },
+          {
+            path: ":category",
+            element: <Category />,
+            loader: categoryLoader,
+            HydrateFallback: Spinner,
+          },
         ],
       },
       { path: "auth", element: <AuthPage /> },

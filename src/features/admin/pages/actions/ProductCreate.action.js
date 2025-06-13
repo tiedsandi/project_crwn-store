@@ -7,7 +7,7 @@ export async function productCreateAction({ request }) {
 
   product.price = Number(product.price);
   product.qty = Number(product.qty);
-  console.log(product);
+  // console.log(product);
 
   await addProduct(product);
   return redirect(

@@ -1,20 +1,9 @@
-import { useEffect, useState } from "react";
-
-import { PRODUCTS } from "../../../../data";
 import ProductCard from "../product-card/product-card.component";
 import styles from "./category.module.css";
-import { useParams } from "react-router";
+import { useLoaderData } from "react-router";
 
 const Category = () => {
-  const { category } = useParams();
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const filteredProducts = PRODUCTS.filter(
-      (product) => product.categoryId === category
-    );
-    setProducts(filteredProducts);
-  }, [category]);
+  const { products, category } = useLoaderData();
 
   return (
     <>

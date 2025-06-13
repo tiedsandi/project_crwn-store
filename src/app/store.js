@@ -3,13 +3,15 @@ import { persistReducer, persistStore } from "redux-persist";
 
 import authReducer from "@/features/auth/authSlice";
 import cartReducer from "@/features/cart/cartSlice";
-import counterReducer from "./testingSlice";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage
+
+// import counterReducer from "./testingSlice";
+
 
 const rootReducer = combineReducers({
   auth: authReducer,
   cart: cartReducer,
-  counter: counterReducer,
+  // counter: counterReducer,
 });
 
 const persistConfig = {
