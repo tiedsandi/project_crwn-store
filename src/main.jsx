@@ -17,3 +17,24 @@ createRoot(document.getElementById("root")).render(
     </Provider>
   </StrictMode>
 );
+
+// TODO :
+// [ ] : kasih loading
+// [ ] : kasih pop up berhasil
+// [ ] : dashboard admin (grafik penjualan hari ini, jumlah produk terbanyak di beli)
+// [ ] : dashboard transcation
+
+// BUG :
+// [ ] : kasih animasi
+// [ ] : tablenya disesuaikan bisa search, atur sort dari table head
+// [ ] : kasih navigate ketika sudah login, user ke shop/ home, kalo admin ke dashboard
+
+// TODO PROJECT :
+// [ ] buat api golang untuk react management phone dan address
+// [ ] buat typescript untuk eventmanagemnt
+// [ ] perbaiki personla web, tanya ai, kasih filter
+// [ ] buat project nextjs
+// [ ] buat portofolio pdf
+
+// kasih waktu 2 jam pagi, 2jam siang, dan 1 jam malam
+// buat project dari yt

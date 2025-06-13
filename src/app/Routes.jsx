@@ -11,7 +11,7 @@ import AdminLayout from "@/features/admin/layout/AdminLayout";
 import AuthPage from "../features/auth/Auth";
 import CategoriesPreview from "../features/shop/components/category-preview/category-preview.component";
 import Category from "../features/shop/components/category/category.component";
-import CheckoutPage from "../features/checkout/pages/Checkout";
+import CheckoutPage from "../features/checkout/Checkout";
 import HomePage from "../features/home/Home";
 import Navigation from "../components/navigation/navigation.component";
 import ProductsPage from "@/features/admin/pages/product/AdminProducts";
