@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
-import ProductTable from "../components/Product-table.component";
-import { getAllProducts } from "../product.firebase";
+import ProductTable from "../../components/Product-table.component";
+import { getAllProducts } from "../../services/product.firebase";
 import { selectCurrentUser } from "@/features/auth/auth.selector";
 import { useSelector } from "react-redux";
 

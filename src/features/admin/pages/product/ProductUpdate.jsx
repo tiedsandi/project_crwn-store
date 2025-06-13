@@ -1,9 +1,9 @@
 // edit.jsx
 
-import { getProductById, updateProduct } from "../product.firebase";
+import { getProductById, updateProduct } from "../../services/product.firebase";
 import { redirect, useLoaderData } from "react-router";
 
-import ProductForm from "../components/product-form.component";
+import ProductForm from "../../components/product-form.component";
 
 export default function ProductEditPage() {
   const product = useLoaderData();

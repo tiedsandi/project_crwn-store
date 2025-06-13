@@ -1,5 +1,5 @@
-import ProductForm from "../components/product-form.component";
-import { addProduct } from "../product.firebase";
+import ProductForm from "../../components/product-form.component";
+import { addProduct } from "../../services/product.firebase";
 import { redirect } from "react-router";
 
 export default function ProductCreatePage() {

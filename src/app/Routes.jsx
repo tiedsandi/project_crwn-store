@@ -1,22 +1,22 @@
 import ProductCreatePage, {
   action as productCreateAction,
-} from "@/features/admin/pages/ProductCreate";
+} from "@/features/admin/pages/product/ProductCreate";
 import ProductUpdatePage, {
   action as productUpdateAction,
   loader as productUpdateLoader,
-} from "@/features/admin/pages/ProductUpdate";
+} from "@/features/admin/pages/product/ProductUpdate";
 
 import AdminDashboard from "@/features/admin/pages/AdminDashboard";
 import AdminLayout from "@/features/admin/layout/AdminLayout";
-import AuthPage from "../features/auth/pages/Auth";
-import CategoriesPreview from "../features/shop/components/shop/category-preview/category-preview.component";
-import Category from "../features/shop/components/shop/category/category.component";
+import AuthPage from "../features/auth/Auth";
+import CategoriesPreview from "../features/shop/components/category-preview/category-preview.component";
+import Category from "../features/shop/components/category/category.component";
 import CheckoutPage from "../features/checkout/pages/Checkout";
-import HomePage from "../features/home/pages/Home";
+import HomePage from "../features/home/Home";
 import Navigation from "../components/navigation/navigation.component";
-import ProductsPage from "@/features/admin/pages/AdminProducts";
+import ProductsPage from "@/features/admin/pages/product/AdminProducts";
 import RequireAdminAuth from "@/middlewares/RequireAdminAuth";
-import ShopPage from "../features/shop/pages/Shop";
+import ShopPage from "../features/shop/Shop";
 import TransactionsPage from "@/features/admin/pages/AdminTranscation";
 import { createBrowserRouter } from "react-router";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { PRODUCTS } from "../../../../../data";
+import { PRODUCTS } from "../../../../data";
 import ProductCard from "../product-card/product-card.component";
 import styles from "./category.module.css";
 import { useParams } from "react-router";

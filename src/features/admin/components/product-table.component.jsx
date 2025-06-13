@@ -1,5 +1,5 @@
 import Button from "@/components/UI/button/button.component";
-import { deleteProduct } from "../product.firebase";
+import { deleteProduct } from "../services/product.firebase";
 import styles from "../Admin.module.css";
 import { useNavigate } from "react-router";
 
