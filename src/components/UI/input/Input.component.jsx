@@ -1,17 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import classes from "./input.module.css";
 
-export default function Input({ label, id, error, value = "", ...props }) {
+export default function Input({
+  label,
+  id,
+  error,
+  value,
+  defaultValue,
+  ...props
+}) {
+  const inputRef = useRef(null);
   const [shrink, setShrink] = useState(false);
 
   useEffect(() => {
-    setShrink(Boolean(value && value.length));
-  }, [value]);
+    const input = inputRef.current;
+    const hasValue = input?.value?.length > 0;
+    setShrink(hasValue);
+
+    const handleInput = () => setShrink(input.value.length > 0);
+    input?.addEventListener("input", handleInput);
+
+    return () => {
+      input?.removeEventListener("input", handleInput);
+    };
+  }, []);
 
   return (
     <div className={classes.group}>
-      <input id={id} className={classes.input} value={value} {...props} />
+      <input
+        ref={inputRef}
+        id={id}
+        className={classes.input}
+        {...(value !== undefined ? { value } : {})}
+        {...(defaultValue !== undefined ? { defaultValue } : {})}
+        {...props}
+      />
       {label && (
         <label
           htmlFor={id}

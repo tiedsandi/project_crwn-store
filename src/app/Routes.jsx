@@ -1,3 +1,11 @@
+import ProductCreatePage, {
+  action as productCreateAction,
+} from "@/features/admin/pages/ProductCreate";
+import ProductUpdatePage, {
+  action as productUpdateAction,
+  loader as productUpdateLoader,
+} from "@/features/admin/pages/ProductUpdate";
+
 import AdminDashboard from "@/features/admin/pages/AdminDashboard";
 import AdminLayout from "@/features/admin/layout/AdminLayout";
 import AuthPage from "../features/auth/pages/Auth";
@@ -40,7 +48,22 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <AdminDashboard /> },
-      { path: "products", element: <ProductsPage /> },
+      {
+        path: "products",
+        element: <ProductsPage />,
+      },
+      {
+        path: "products/create",
+        element: <ProductCreatePage />,
+        action: productCreateAction,
+      },
+
+      {
+        path: "products/update/:id",
+        element: <ProductUpdatePage />,
+        loader: productUpdateLoader,
+        action: productUpdateAction,
+      },
       { path: "transactions", element: <TransactionsPage /> },
     ],
   },

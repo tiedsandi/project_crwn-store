@@ -1,55 +1,77 @@
 import Button from "@/components/UI/button/button.component";
+import { deleteProduct } from "../product.firebase";
 import styles from "../Admin.module.css";
+import { useNavigate } from "react-router";
 
-export default function ProductTable({ products, setProducts }) {
-  // const handleDelete = async (id) => {
-  //   const confirmed = window.confirm("Yakin ingin menghapus produk ini?");
-  //   if (!confirmed) return;
+export default function ProductTable({ products }) {
+  const navigate = useNavigate();
 
-  //   try {
-  //     // TODO: Integrasikan delete dari Firebase
-  //     console.log("Menghapus produk dengan id:", id);
-  //     // setProducts(products.filter((product) => product.id !== id));
-  //   } catch (err) {
-  //     alert("Gagal menghapus produk.");
-  //   }
-  // };
+  const handleDelete = async (id) => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this product?"
+    );
+    if (!confirmed) return;
+    await deleteProduct(id);
+  };
+
+  const handleEdit = (id) => {
+    navigate(`update/${id}`);
+  };
+
+  const onNavigateHandler = () => navigate("create/");
 
   return (
     <div>
       <div className={styles.tableHeader}>
-        <h2>Daftar Produk</h2>
-        <Button onClick={() => alert("Form Tambah Produk belum dibuat")}>
-          + Tambah Produk
-        </Button>
+        <h2>Product List</h2>
+        <Button onClick={onNavigateHandler}>Add Product</Button>
       </div>
       <table className={styles.productTable}>
         <thead>
           <tr>
-            <th>Nama</th>
-            <th>Kategori</th>
-            <th>Harga</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price ($)</th>
             <th>Qty</th>
-            <th>Aksi</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {products.length === 0 && (
             <tr>
-              <td colSpan="5">Tidak ada produk ditemukan.</td>
+              <td colSpan="6">No products found.</td>
             </tr>
           )}
           {products.map((product) => (
             <tr key={product.id}>
-              <td>{product.name || "-"}</td>
-              <td>{product.category || "-"}</td>
-              <td>{product.price ? `Rp${product.price}` : "-"}</td>
-              <td>{product.quantity ?? 0}</td>
               <td>
-                <Button onClick={() => alert("Edit belum dibuat")}>Edit</Button>
+                {product.imageUrl ? (
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      objectFit: "cover",
+                      borderRadius: "6px",
+                    }}
+                  />
+                ) : (
+                  <span style={{ fontStyle: "italic", color: "#aaa" }}>
+                    No image
+                  </span>
+                )}
+              </td>
+              <td>{product.name || "-"}</td>
+              <td>{product.categoryId || "-"}</td>
+              <td>{product.price}</td>
+              <td>{product.qty ?? 0}</td>
+              <td>
+                <Button onClick={() => handleEdit(product.id)}>Edit</Button>
                 <Button
-                  // onClick={() => handleDelete(product.id)}
                   buttonType="inverted"
+                  onClick={() => handleDelete(product.id)}
                 >
                   Delete
                 </Button>
