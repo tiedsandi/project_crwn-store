@@ -1,24 +1,57 @@
 import Button from "@/components/UI/button/button.component";
+import ConfirmModal from "@/components/UI/confirm-modal/ConfirmModal"; // pastikan path sesuai
 import { deleteProduct } from "../services/product.firebase";
 import styles from "../Admin.module.css";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
+import { useState } from "react";
 
 export default function ProductTable({ products }) {
   const navigate = useNavigate();
-
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this product?"
-    );
-    if (!confirmed) return;
-    await deleteProduct(id);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
 
   const handleEdit = (id) => {
     navigate(`update/${id}`);
   };
 
   const onNavigateHandler = () => navigate("create/");
+
+  const handleDeleteClick = (id) => {
+    setProductToDelete(id);
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!productToDelete) return;
+
+    const deletingToast = toast.loading("Menghapus produk...");
+
+    try {
+      await deleteProduct(productToDelete);
+      toast.update(deletingToast, {
+        render: "🗑️ Produk berhasil dihapus",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });
+      setIsModalOpen(false);
+      setProductToDelete(null);
+      navigate("/admin/products", { replace: true });
+    } catch (err) {
+      toast.update(err, {
+        render: "❌ Gagal menghapus produk",
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setIsModalOpen(false);
+    setProductToDelete(null);
+  };
 
   return (
     <div>
@@ -71,7 +104,7 @@ export default function ProductTable({ products }) {
                 <Button onClick={() => handleEdit(product.id)}>Edit</Button>
                 <Button
                   buttonType="inverted"
-                  onClick={() => handleDelete(product.id)}
+                  onClick={() => handleDeleteClick(product.id)}
                 >
                   Delete
                 </Button>
@@ -80,6 +113,13 @@ export default function ProductTable({ products }) {
           ))}
         </tbody>
       </table>
+
+      <ConfirmModal
+        isOpen={isModalOpen}
+        message="Yakin ingin menghapus produk ini?"
+        onConfirm={handleConfirmDelete}
+        onCancel={handleCancelDelete}
+      />
     </div>
   );
 }

@@ -20,11 +20,12 @@ createRoot(document.getElementById("root")).render(
 
 // TODO :
 // [ ] : kasih loading
-// [ ] : kasih pop up berhasil
+// [x] : kasih pop up berhasil
 // [ ] : dashboard admin (grafik penjualan hari ini, jumlah produk terbanyak di beli)
 // [ ] : dashboard transcation
 
 // BUG :
+// [ ] : gunakan bahas inggris
 // [ ] : kasih animasi
 // [ ] : tablenya disesuaikan bisa search, atur sort dari table head
 // [ ] : kasih navigate ketika sudah login, user ke shop/ home, kalo admin ke dashboard

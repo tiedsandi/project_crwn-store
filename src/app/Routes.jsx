@@ -1,11 +1,3 @@
-import ProductCreatePage, {
-  action as productCreateAction,
-} from "@/features/admin/pages/product/ProductCreate";
-import ProductUpdatePage, {
-  action as productUpdateAction,
-  loader as productUpdateLoader,
-} from "@/features/admin/pages/product/ProductUpdate";
-
 import AdminDashboard from "@/features/admin/pages/AdminDashboard";
 import AdminLayout from "@/features/admin/layout/AdminLayout";
 import AuthPage from "../features/auth/Auth";
@@ -14,11 +6,16 @@ import Category from "../features/shop/components/category/category.component";
 import CheckoutPage from "../features/checkout/Checkout";
 import HomePage from "../features/home/Home";
 import Navigation from "../components/navigation/navigation.component";
+import ProductCreatePage from "@/features/admin/pages/product/ProductCreate";
+import ProductUpdatePage from "@/features/admin/pages/product/ProductUpdate";
 import ProductsPage from "@/features/admin/pages/product/AdminProducts";
 import RequireAdminAuth from "@/middlewares/RequireAdminAuth";
 import ShopPage from "../features/shop/Shop";
 import TransactionsPage from "@/features/admin/pages/AdminTranscation";
 import { createBrowserRouter } from "react-router";
+import { productCreateAction } from "@/features/admin/pages/actions/ProductCreate.action";
+import { productUpdateAction } from "@/features/admin/pages/actions/ProductUpdate.action";
+import { productUpdateLoader } from "@/features/admin/pages/loaders/ProductUpdate.loader";
 
 const router = createBrowserRouter([
   {
