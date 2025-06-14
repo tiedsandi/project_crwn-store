@@ -12,13 +12,14 @@ import ProductsPage from "@/features/admin/pages/product/AdminProducts";
 import RequireAdminAuth from "@/middlewares/RequireAdminAuth";
 import ShopPage from "../features/shop/Shop";
 import Spinner from "@/components/UI/spinner/Spinner.component";
-import TransactionsPage from "@/features/admin/pages/AdminTranscation";
+import TransactionsDashboard from "@/features/admin/pages/AdminTranscation";
 import { categoriesPreviewLoader } from "@/features/shop/categoriesPreviewLoader";
 import { categoryLoader } from "@/features/shop/CategoryLoader";
 import { createBrowserRouter } from "react-router";
 import { productCreateAction } from "@/features/admin/pages/actions/ProductCreate.action";
 import { productUpdateAction } from "@/features/admin/pages/actions/ProductUpdate.action";
 import { productUpdateLoader } from "@/features/admin/pages/loaders/ProductUpdate.loader";
+import { transactionsLoader } from "@/features/admin/pages/loaders/transaction-dashboard.lodaer";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,12 @@ const router = createBrowserRouter([
       </RequireAdminAuth>
     ),
     children: [
-      { index: true, element: <AdminDashboard /> },
+      {
+        index: true,
+        element: <AdminDashboard />,
+        loader: transactionsLoader,
+        HydrateFallback: Spinner,
+      },
       {
         path: "products",
         element: <ProductsPage />,
@@ -74,7 +80,12 @@ const router = createBrowserRouter([
         loader: productUpdateLoader,
         action: productUpdateAction,
       },
-      { path: "transactions", element: <TransactionsPage /> },
+      {
+        path: "transactions",
+        element: <TransactionsDashboard />,
+        loader: transactionsLoader,
+        HydrateFallback: Spinner,
+      },
     ],
   },
 ]);
