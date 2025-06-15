@@ -56,6 +56,11 @@
 
 .productTable th {
   background-color: #f4f4f4;
+  cursor: pointer;
+}
+
+.productTable th:hover {
+  background-color: #e0e0e0;
 }
 
 .formContainer {
@@ -89,11 +94,6 @@
   margin-bottom: 1rem;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
 .theadRow {
   background-color: #f3f4f6;
 }
@@ -103,4 +103,55 @@
   border: 1px solid #ccc;
   padding: 0.5rem;
   text-align: left;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.input {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 250px;
+}
+
+.select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #084298;
+}
+
+.pagination {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
 }

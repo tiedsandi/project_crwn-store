@@ -28,6 +28,13 @@ const Navigation = () => {
           <Link to="/shop" className={classes.navLink}>
             SHOP
           </Link>
+
+          {currentUser?.email.includes("admin") && (
+            <Link to="/admin" className={classes.navLink}>
+              ADMIN
+            </Link>
+          )}
+
           {currentUser ? (
             <span className={classes.navLink} onClick={signOutUser}>
               SIGN OUT
@@ -37,8 +44,10 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+
           <CartIcon />
         </div>
+
         {isCartOpen && <CartDropdown />}
       </div>
       <Outlet />

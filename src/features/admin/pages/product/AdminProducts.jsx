@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import ProductTable from "../../components/Product-table.component";
 import Spinner from "@/components/UI/spinner/Spinner.component";
+import classes from "../../admin.module.css";
 import { getAllProducts } from "../../services/product.firebase";
 import { selectCurrentUser } from "@/features/auth/auth.selector";
 import { useSelector } from "react-redux";
@@ -26,7 +27,7 @@ export default function ProductsPage() {
 
   return (
     <div>
-      <h1>📦 Manage Products</h1>
+      <h1 className={classes.heading}>Manage Products</h1>
       {loading ? <Spinner /> : <ProductTable products={products} />}
     </div>
   );
