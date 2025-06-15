@@ -4,6 +4,7 @@ import AuthPage from "../features/auth/Auth";
 import CategoriesPreview from "../features/shop/components/category-preview/category-preview.component";
 import Category from "../features/shop/components/category/category.component";
 import CheckoutPage from "../features/checkout/Checkout";
+import CheckoutSuccess from "@/features/checkout/components/checkout-success.component";
 import HomePage from "../features/home/Home";
 import Navigation from "../components/navigation/navigation.component";
 import ProductCreatePage from "@/features/admin/pages/product/ProductCreate";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       },
       { path: "auth", element: <AuthPage /> },
       { path: "checkout", element: <CheckoutPage /> },
+      {
+        path: "/checkout/success",
+        element: <CheckoutSuccess />,
+      },
     ],
   },
   {
