@@ -1,28 +1,59 @@
+import { isAfter, subDays } from "date-fns";
+import { useMemo, useState } from "react";
+
 import Chart from "./Chart.jsx";
 import classes from "./dashboard.module.css";
 import { useLoaderData } from "react-router";
 
+const FILTERS = [
+  { label: "1 Day", value: 1 },
+  { label: "7 Days", value: 7 },
+  { label: "30 Days", value: 30 },
+  { label: "All", value: Infinity },
+];
+
 const AdminDashboard = () => {
   const { transactions } = useLoaderData();
+  const [range, setRange] = useState(Infinity);
 
-  const totalRevenue = transactions.reduce((sum, tx) => sum + tx.total, 0);
-  const totalTransactions = transactions.length;
+  const filteredTransactions = useMemo(() => {
+    if (range === Infinity) return transactions;
+    const fromDate = subDays(new Date(), range);
+    return transactions.filter(
+      (tx) => tx.createdAt?.toDate && isAfter(tx.createdAt.toDate(), fromDate)
+    );
+  }, [transactions, range]);
 
-  const dailyDataMap = new Map();
+  const totalRevenue = filteredTransactions.reduce(
+    (sum, tx) => sum + tx.total,
+    0
+  );
+  const totalTransactions = filteredTransactions.length;
 
-  transactions.forEach((tx) => {
-    const date = tx.createdAt?.toDate().toLocaleDateString() || "Unknown";
-    dailyDataMap.set(date, (dailyDataMap.get(date) || 0) + 1);
-  });
-
-  const chartData = Array.from(dailyDataMap, ([date, count]) => ({
-    date,
-    count,
-  }));
+  const chartData = useMemo(() => {
+    const map = new Map();
+    filteredTransactions.forEach((tx) => {
+      const date = tx.createdAt?.toDate().toLocaleDateString() || "Unknown";
+      map.set(date, (map.get(date) || 0) + 1);
+    });
+    return Array.from(map, ([date, count]) => ({ date, count }));
+  }, [filteredTransactions]);
 
   return (
     <div className={classes.container}>
       <h1 className={classes.heading}>Admin Dashboard</h1>
+
+      <div className={classes.filterButtons}>
+        {FILTERS.map(({ label, value }) => (
+          <button
+            key={value}
+            onClick={() => setRange(value)}
+            className={range === value ? classes.activeFilter : ""}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
 
       <div className={classes.summary}>
         <div className={classes.card}>
