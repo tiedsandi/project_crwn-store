@@ -12,7 +12,7 @@ export const signUp = createAsyncThunk(
       const user = await signUpUser({ email, password, displayName });
       return user;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error);
     }
   }
 );
@@ -24,7 +24,7 @@ export const signIn = createAsyncThunk(
       const user = await signInUser({ email, password });
       return user;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error);
     }
   }
 );
@@ -56,7 +56,7 @@ export const googleSignIn = createAsyncThunk(
       const user = await signInWithGoogle();
       return user;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error);
     }
   }
 );
@@ -64,45 +64,36 @@ export const googleSignIn = createAsyncThunk(
 const initialState = {
   currentUser: null,
   isLoading: false,
-  error: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {
-    clearAuthError(state) {
-      state.error = null;
-    },
-  },
+
   extraReducers: (builder) => {
     builder
       // Sign Up
       .addCase(signUp.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
       })
       .addCase(signUp.fulfilled, (state, action) => {
         state.isLoading = false;
         state.currentUser = action.payload;
       })
-      .addCase(signUp.rejected, (state, action) => {
+      .addCase(signUp.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
       })
 
       // Sign In
       .addCase(signIn.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.currentUser = action.payload;
       })
-      .addCase(signIn.rejected, (state, action) => {
+      .addCase(signIn.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
       })
 
       // Sign Out
@@ -126,15 +117,13 @@ const authSlice = createSlice({
       // Google Sign In
       .addCase(googleSignIn.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
       })
       .addCase(googleSignIn.fulfilled, (state, action) => {
         state.isLoading = false;
         state.currentUser = action.payload;
       })
-      .addCase(googleSignIn.rejected, (state, action) => {
+      .addCase(googleSignIn.rejected, (state) => {
         state.isLoading = false;
-        state.error = action.payload;
       });
   },
 });

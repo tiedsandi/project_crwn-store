@@ -17,8 +17,6 @@ export async function getAllTransactions() {
   await Promise.all(
     userIds.map(async (uid) => {
       const userDoc = await getDoc(doc(db, "users", uid));
-      console.log(userDoc);
-
       if (userDoc.exists()) {
         userMap[uid] = userDoc.data().displayName || "No Name";
       } else {

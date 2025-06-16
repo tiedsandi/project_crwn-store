@@ -1,10 +1,12 @@
 import { googleSignIn, signIn } from "@/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 import Button from "@/components/UI/button/button.component";
 import Input from "@/components/UI/input/Input.component";
+import { selectCurrentUser } from "../../auth.selector";
 import styles from "./Signin-form.module.css";
-import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const defaultFormFields = {
   email: "",
@@ -12,10 +14,22 @@ const defaultFormFields = {
 };
 
 export default function SignInForm() {
+  const [formError, setFormError] = useState(null);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
   const dispatch = useDispatch();
-  const { error, loading } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
+
+  const currentUser = useSelector(selectCurrentUser);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      const isAdmin = currentUser.email.includes("admin");
+      navigate(isAdmin ? "/admin" : "/shop");
+    }
+  }, [currentUser, navigate]);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -27,8 +41,18 @@ export default function SignInForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(signIn({ email, password }));
-    resetFormFields();
+    setFormError(null); // reset error saat submit ulang
+
+    try {
+      await dispatch(signIn({ email, password })).unwrap();
+      resetFormFields();
+    } catch (error) {
+      if (error.code === "auth/invalid-credential") {
+        setFormError("Invalid email or password");
+      } else {
+        setFormError("Sign-in failed. Please try again.");
+      }
+    }
   };
 
   const handleChange = (event) => {
@@ -41,9 +65,8 @@ export default function SignInForm() {
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
-        {error && (
-          <div className={styles.formError}>Sign-in failed: {error}</div>
-        )}
+        {formError && <div className={styles.formError}>{formError}</div>}
+
         <Input
           label="Email"
           type="email"

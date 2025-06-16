@@ -1,39 +1,50 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import classes from "./input.module.css";
 
 export default function Input({
   label,
   id,
-  error,
+  name,
   value,
   defaultValue,
+  onChange,
+  error,
   ...props
 }) {
   const inputRef = useRef(null);
   const [shrink, setShrink] = useState(false);
 
+  // Tentukan apakah input controlled (value !== undefined)
+  const isControlled = useMemo(() => value !== undefined, [value]);
+
   useEffect(() => {
-    const input = inputRef.current;
-    const hasValue = input?.value?.length > 0;
-    setShrink(hasValue);
+    if (isControlled) {
+      setShrink(value?.toString().length > 0);
+    } else if (inputRef.current) {
+      setShrink(inputRef.current.value.length > 0);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
 
-    const handleInput = () => setShrink(input.value.length > 0);
-    input?.addEventListener("input", handleInput);
+  const handleChange = (e) => {
+    if (onChange) onChange(e);
 
-    return () => {
-      input?.removeEventListener("input", handleInput);
-    };
-  }, []);
+    if (!isControlled && inputRef.current) {
+      setShrink(e.target.value.length > 0);
+    }
+  };
 
   return (
     <div className={classes.group}>
       <input
         ref={inputRef}
         id={id}
+        name={name}
         className={classes.input}
-        {...(value !== undefined ? { value } : {})}
-        {...(defaultValue !== undefined ? { defaultValue } : {})}
+        value={isControlled ? value : undefined}
+        defaultValue={!isControlled ? defaultValue : undefined}
+        onChange={handleChange}
         {...props}
       />
       {label && (
