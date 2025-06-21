@@ -35,7 +35,16 @@
 
 ### 📈 Demo
 
-🚧 _Coming soon..._
+[Deploy Project](https://crwn-toko.netlify.app/)
+
+## 🔑 Admin Login
+
+Untuk mengakses dashboard admin, gunakan kredensial berikut:
+
+```
+Email: admin@gmail.com
+Password: 12345678
+```
 
 ---
 
