@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import classes from "./input.module.css";
+import classes from "./Input.module.css";
 
 export default function Input({
   label,
