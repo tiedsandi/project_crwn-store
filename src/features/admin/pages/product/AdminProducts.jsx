@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import ProductTable from "../../components/Product-table.component";
+import ProductTable from "../../components/product-table.component";
 import Spinner from "@/components/UI/spinner/Spinner.component";
 import classes from "../../admin.module.css";
 import { getAllProducts } from "../../services/product.firebase";

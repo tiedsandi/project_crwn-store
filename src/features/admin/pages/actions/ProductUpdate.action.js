@@ -9,6 +9,6 @@ export async function productUpdateAction({ request, params }) {
 
   await updateProduct(params.id, updatedData);
   return redirect(
-    "/admin/products?success=Produk+berhasil+diupdate&type=update"
+    "/admin/products?success=Product+successfully+updated&type=update"
   );
 }

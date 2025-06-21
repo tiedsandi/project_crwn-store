@@ -9,10 +9,10 @@ export default function ConfirmModal({ isOpen, message, onConfirm, onCancel }) {
         <p className={styles.message}>{message}</p>
         <div className={styles.actions}>
           <button className={styles.cancelButton} onClick={onCancel}>
-            Batal
+            Cancel
           </button>
           <button className={styles.confirmButton} onClick={onConfirm}>
-            Ya, Hapus
+            Yes, Delete
           </button>
         </div>
       </div>

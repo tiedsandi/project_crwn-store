@@ -11,6 +11,6 @@ export async function productCreateAction({ request }) {
 
   await addProduct(product);
   return redirect(
-    "/admin/products?success=Produk+berhasil+ditambahkan&type=create"
+    "/admin/products?success=Product+successfully+added&type=create"
   );
 }
