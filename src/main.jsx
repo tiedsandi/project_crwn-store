@@ -17,13 +17,3 @@ createRoot(document.getElementById("root")).render(
     </Provider>
   </StrictMode>
 );
-
-// TODO PROJECT :
-// [ ] buat api golang untuk react management phone dan address
-// [ ] perbaiki personla web, tanya ai, kasih filter
-// [ ] buat typescript untuk eventmanagemnt
-// [ ] buat project nextjs
-// [ ] buat portofolio pdf
-
-// kasih waktu 2 jam pagi, 2jam siang, dan 1 jam malam
-// buat project dari yt
