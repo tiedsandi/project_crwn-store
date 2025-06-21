@@ -1,4 +1,4 @@
-## 🛒 CRWN SHOP (Frontend Only)
+## 🛒 CRWN SHOP
 
 **CRWN SHOP** adalah aplikasi **online shop pakaian** yang dibangun untuk **showcase portofolio dan pembelajaran fullstack menggunakan Firebase**.
 
