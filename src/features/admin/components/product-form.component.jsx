@@ -2,7 +2,7 @@ import { Form, useNavigation } from "react-router";
 
 import Button from "@/components/UI/button/button.component";
 import Input from "@/components/UI/input/Input.component";
-import styles from "../Admin.module.css";
+import styles from "../admin.module.css";
 
 const categoryOptions = ["hats", "sneakers", "jackets", "mens", "womens"];
 

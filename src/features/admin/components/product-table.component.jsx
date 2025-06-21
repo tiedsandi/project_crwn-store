@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Button from "@/components/UI/button/button.component";
 import ConfirmModal from "@/components/UI/confirm-modal/ConfirmModal";
 import { deleteProduct } from "../services/product.firebase";
-import styles from "../Admin.module.css";
+import styles from "../admin.module.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
