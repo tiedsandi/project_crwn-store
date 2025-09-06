@@ -68,7 +68,7 @@ export default function SignInForm() {
         {formError && <div className={styles.formError}>{formError}</div>}
 
         <Input
-          label="Email"
+          label="Email (ex:admin@gmail.com)"
           type="email"
           required
           name="email"
@@ -77,7 +77,7 @@ export default function SignInForm() {
           id="sign-in-email"
         />
         <Input
-          label="Password"
+          label="Password  (ex:12345678)"
           type="password"
           required
           name="password"

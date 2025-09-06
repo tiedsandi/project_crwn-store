@@ -10,3 +10,11 @@
   margin-bottom: 25px;
   text-align: center;
 }
+
+@media only screen and (max-width: 800px) {
+  .categoryContainer {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15px;
+    row-gap: 15px;
+  }
+}

@@ -49,3 +49,27 @@
 .price {
   width: 10%;
 }
+
+@media only screen and (max-width: 800px) {
+  .productCard {
+    height: 250px;
+  }
+
+  .productImage {
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .footer {
+    font-size: 14px;
+    padding: 0 8px;
+  }
+  .productCard button {
+    top: 130px;
+    width: 40%;
+  }
+
+  .productImage {
+    height: 80%;
+  }
+}

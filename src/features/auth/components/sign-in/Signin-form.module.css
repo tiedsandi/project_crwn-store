@@ -19,3 +19,12 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
+@media only screen and (max-width: 600px) {
+  .signInContainer {
+    width: 300px;
+  }
+  .buttonsContainer {
+    flex-direction: column;
+  }
+}
