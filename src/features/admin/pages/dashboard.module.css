@@ -62,3 +62,25 @@
   color: white;
   font-weight: bold;
 }
+
+/* Mobile-friendly layout */
+@media (max-width: 768px) {
+  .summary {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .card {
+    width: 100%;
+    text-align: center;
+  }
+
+  .filterButtons {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .chart {
+    overflow-x: auto;
+  }
+}

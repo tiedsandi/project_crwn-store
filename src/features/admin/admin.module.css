@@ -1,47 +1,53 @@
-.layout {
+.container {
+  padding: 2rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Controls (search, filter, add button) ---------- */
+.controls {
   display: flex;
-  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
-
-.sidebar {
-  width: 200px;
-  background-color: #222;
-  color: white;
-  padding: 1rem;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 0.5rem 0;
-}
-
-.sidebar a:hover {
-  background-color: #444;
-}
-
-.content {
-  flex: 1;
-  padding: 2rem;
-}
-
-.adminContainer {
-  padding: 2rem;
-}
-
 .tableHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
+.tableControls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.select {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+/* ---------- Product Table ---------- */
 .productTable {
   width: 100%;
   border-collapse: collapse;
@@ -49,109 +55,160 @@
 
 .productTable th,
 .productTable td {
-  border: 1px solid #ddd;
   padding: 0.75rem;
+  border-bottom: 1px solid #eee;
   text-align: left;
 }
 
 .productTable th {
-  background-color: #f4f4f4;
+  background: #f3f4f6;
   cursor: pointer;
+  user-select: none;
 }
 
-.productTable th:hover {
-  background-color: #e0e0e0;
-}
-
-.formContainer {
-  margin-bottom: 2rem;
-  border: 1px solid #ddd;
-  padding: 1.5rem;
-  border-radius: 8px;
-  background-color: #fdfdfd;
-}
-
-.selectGroup {
-  margin: 1rem 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.selectInput {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-.container {
-  padding: 1rem;
-}
-
-.heading {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.theadRow {
-  background-color: #f3f4f6;
-}
-
-.th,
-.td {
-  border: 1px solid #ccc;
-  padding: 0.5rem;
-  text-align: left;
-}
-
-.controls {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.input {
-  padding: 0.4rem 0.6rem;
-  border: 1px solid #ccc;
+.productImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
   border-radius: 6px;
-  font-size: 0.9rem;
-  width: 100%;
-  max-width: 250px;
 }
 
-.select {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+.noImage {
+  font-style: italic;
+  color: #aaa;
 }
 
-.button {
-  background-color: #0d6efd;
-  color: white;
+/* ---------- Action buttons ---------- */
+.actionGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.iconButton {
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  background: transparent;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s ease;
-}
-
-.button:hover {
-  background-color: #084298;
-}
-
-.pagination {
-  margin-top: 1rem;
+  padding: 0.3rem;
+  border-radius: 6px;
+  transition: background 0.2s;
   display: flex;
-  gap: 1rem;
   align-items: center;
   justify-content: center;
 }
 
-.iconButton {
-  background: transparent;
+.iconButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.pagination button {
   border: none;
+  background: #f3f4f6;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
   cursor: pointer;
-  padding: 4px;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #e0e0e0;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 768px) {
+  .tableHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tableControls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .productTable {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .productTable th,
+  .productTable td {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* ---------- Product Form ---------- */
+.formContainer {
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.formHeading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.selectGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selectInput {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.submitBtn {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: end;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .formHeading {
+    font-size: 1.1rem;
+  }
+
+  .submitBtn {
+    align-self: stretch;
+  }
 }

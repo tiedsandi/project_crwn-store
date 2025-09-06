@@ -1,67 +1,95 @@
+/* ---------- Backdrop ---------- */
 .backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  inset: 0; /* shorthand untuk top:0; right:0; bottom:0; left:0 */
+  background-color: rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
-}
-
-.modal {
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.25s ease-out;
 }
 
-.message {
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  text-align: center;
+/* ---------- Modal ---------- */
+.modal {
+  background-color: #fff;
+  padding: 1.75rem;
+  border-radius: 12px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  animation: scaleIn 0.25s ease-out;
 }
 
+/* ---------- Message ---------- */
+.message {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ---------- Actions ---------- */
 .actions {
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
+/* ---------- Cancel Button ---------- */
 .cancelButton {
   background-color: transparent;
   color: #555;
   border: 1px solid #ccc;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 0.95rem;
   transition: all 0.2s ease;
 }
 
 .cancelButton:hover {
+  background-color: #f9f9f9;
+}
+
+.cancelButton:active {
   background-color: #f1f1f1;
 }
 
+/* ---------- Confirm Button ---------- */
 .confirmButton {
   background-color: #e53935;
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.25rem;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .confirmButton:hover {
-  background-color: #c62828;
+  background-color: #d32f2f;
 }
 
+.confirmButton:active {
+  transform: scale(0.96);
+}
+
+/* ---------- Animations ---------- */
 @keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
   from {
     opacity: 0;
     transform: scale(0.96);

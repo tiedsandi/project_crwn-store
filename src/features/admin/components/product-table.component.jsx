@@ -92,7 +92,7 @@ export default function ProductTable({ products }) {
     <div>
       <div className={styles.tableHeader}>
         <h3>Product List</h3>
-        <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+        <div className={styles.tableControls}>
           <input
             type="text"
             placeholder="Search product..."
@@ -131,17 +131,10 @@ export default function ProductTable({ products }) {
                   <img
                     src={product.imageUrl}
                     alt={product.name}
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      objectFit: "cover",
-                      borderRadius: "6px",
-                    }}
+                    className={styles.productImage}
                   />
                 ) : (
-                  <span style={{ fontStyle: "italic", color: "#aaa" }}>
-                    No image
-                  </span>
+                  <span className={styles.noImage}>No image</span>
                 )}
               </td>
               <td>{product.name || "-"}</td>
@@ -149,7 +142,7 @@ export default function ProductTable({ products }) {
               <td>{product.price}</td>
               <td>{product.qty ?? 0}</td>
               <td>
-                <div style={{ display: "flex", gap: "0.5rem" }}>
+                <div className={styles.actionGroup}>
                   <button
                     onClick={() => handleEdit(product.id)}
                     title="Edit"

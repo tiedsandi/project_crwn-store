@@ -1,57 +1,87 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  background: #f9f9f9;
+  transition: margin-left 0.3s ease;
 }
 
 .sidebar {
-  width: 180px;
-  background: #f0f0f0;
+  width: 220px;
+  background: #222;
+  color: #fff;
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  transition: transform 0.3s ease;
 }
 
 .logo {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  flex-grow: 1;
+  gap: 1rem;
 }
 
-.sidebar nav a {
-  color: black;
+.nav a {
+  color: #fff;
   text-decoration: none;
-  padding: 0.4rem 0;
-  font-size: 0.95rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sidebar nav a.active {
-  font-weight: bold;
 }
 
 .logoutBtn {
-  background: none;
+  margin-top: 2rem;
+  background: #e74c3c;
+  color: #fff;
   border: none;
-  color: red;
+  padding: 0.5rem;
   cursor: pointer;
-  margin-top: 1rem;
-  padding: 0;
-  font-size: 0.95rem;
-  text-align: left;
 }
 
-.content {
-  flex-grow: 1;
-  padding: 2rem;
-  overflow: auto;
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #222;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 25;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0; /* shorthand: top:0; right:0; bottom:0; left:0 */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50; /* di bawah sidebar, di atas konten */
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 180px;
+    transform: translateX(-100%);
+    z-index: 99;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  .hamburger {
+    display: block;
+  }
 }

@@ -1,10 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import Button from "@/components/UI/button/button.component";
 import { addItemToCart } from "@/features/cart/cartSlice";
 import classes from "./product-card.module.css";
-import { useDispatch } from "react-redux";
+import { selectCurrentUser } from "@/features/auth/auth.selector";
 
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
+
+  const currentUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
   const addProductToCart = () => dispatch(addItemToCart(product));
@@ -15,9 +19,11 @@ const ProductCard = ({ product }) => {
         <span className={classes.name}>{name}</span>
         <span className={classes.price}>${price}</span>
       </div>
-      <Button buttonType="inverted" onClick={addProductToCart}>
-        Add to cart
-      </Button>
+      {!currentUser?.email.includes("admin") && (
+        <Button buttonType="inverted" onClick={addProductToCart}>
+          Add to cart
+        </Button>
+      )}
     </div>
   );
 };

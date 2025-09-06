@@ -12,7 +12,9 @@ export default function ProductForm({ existingProduct }) {
 
   return (
     <Form method="post" className={styles.formContainer}>
-      <h3>{existingProduct ? "Edit Product" : "Add Product"}</h3>
+      <h3 className={styles.formHeading}>
+        {existingProduct ? "Edit Product" : "Add Product"}
+      </h3>
 
       {existingProduct && (
         <input type="hidden" name="id" value={existingProduct.id} />
@@ -48,6 +50,7 @@ export default function ProductForm({ existingProduct }) {
         defaultValue={existingProduct?.qty || ""}
         required
       />
+
       <div className={styles.selectGroup}>
         <label htmlFor="product-category">Category</label>
         <select
@@ -64,13 +67,15 @@ export default function ProductForm({ existingProduct }) {
         </select>
       </div>
 
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting
-          ? "Saving..."
-          : existingProduct
-          ? "Update Product"
-          : "Add Product"}
-      </Button>
+      <div className={styles.submitBtn}>
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting
+            ? "Saving..."
+            : existingProduct
+            ? "Update Product"
+            : "Add Product"}
+        </Button>
+      </div>
     </Form>
   );
 }

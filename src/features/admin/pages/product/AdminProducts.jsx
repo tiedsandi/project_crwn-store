@@ -26,7 +26,7 @@ export default function ProductsPage() {
   }, [auth]);
 
   return (
-    <div>
+    <div className={classes.container}>
       <h1 className={classes.heading}>Manage Products</h1>
       {loading ? <Spinner /> : <ProductTable products={products} />}
     </div>

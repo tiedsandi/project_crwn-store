@@ -100,26 +100,27 @@ const TransactionsDashboard = () => {
       <h1 className={classes.heading}>Transaction Dashboard</h1>
 
       <div className={classes.controls}>
-        <input
-          className={classes.input}
-          value={globalFilter}
-          onChange={(e) => setGlobalFilter(e.target.value)}
-          placeholder="Search by email, user ID..."
-        />
+        <div>
+          <input
+            className={classes.input}
+            value={globalFilter}
+            onChange={(e) => setGlobalFilter(e.target.value)}
+            placeholder="Search by email, user ID..."
+          />
 
-        <select
-          className={classes.select}
-          value={dayRange}
-          onChange={(e) => setDayRange(e.target.value)}
-        >
-          <option value="all">All Time</option>
-          <option value="1">Last 1 Day</option>
-          <option value="7">Last 7 Days</option>
-          <option value="30">Last 30 Days</option>
-        </select>
+          <select
+            className={classes.select}
+            value={dayRange}
+            onChange={(e) => setDayRange(e.target.value)}
+          >
+            <option value="all">All Time</option>
+            <option value="1">Last 1 Day</option>
+            <option value="7">Last 7 Days</option>
+            <option value="30">Last 30 Days</option>
+          </select>
+        </div>
 
         <Button onClick={handleDownloadCSV} buttonType="inverted">
-          {" "}
           Export CSV
         </Button>
       </div>

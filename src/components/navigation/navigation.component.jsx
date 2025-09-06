@@ -14,9 +14,11 @@ import { toggleCart } from "@/features/cart/cartSlice";
 
 const Navigation = () => {
   const disaptch = useDispatch();
-  const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
   const dispatch = useDispatch();
+
+  const currentUser = useSelector(selectCurrentUser);
+  const isAdmin = currentUser?.email.includes("admin");
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -46,7 +48,7 @@ const Navigation = () => {
             SHOP
           </NavLink>
 
-          {currentUser?.email.includes("admin") && (
+          {isAdmin && (
             <NavLink
               to="/admin"
               className={classes.navLink}
@@ -76,7 +78,7 @@ const Navigation = () => {
             </NavLink>
           )}
 
-          <CartIcon />
+          {!isAdmin && <CartIcon />}
         </div>
 
         <div className={classes.mobileMenuIcon}>
@@ -131,11 +133,11 @@ const Navigation = () => {
               </NavLink>
             )}
 
-            <CartIcon />
+            {!isAdmin && <CartIcon />}
           </div>
         )}
 
-        {isCartOpen && <CartDropdown />}
+        {isCartOpen && !isAdmin && <CartDropdown />}
       </div>
       <Outlet />
     </Fragment>
